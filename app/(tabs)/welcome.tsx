@@ -1,8 +1,13 @@
+import { useRouter } from "expo-router";
+import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Characters from '../../assets/images/welcome.png';
+import ButtonPrincipal from "../../components/ButtonPrincipal/ButtonPrincipal";
 
 
 const Welcome = () => {
+    const router = useRouter();
+
     return (
         <View style={styles.container}>
             <View style={styles.containerTitulo}>
@@ -16,12 +21,20 @@ const Welcome = () => {
             </View>
             
             <View style={styles.containerButton}>
-                <View style={{ gap: 15 }}>
-                    <Pressable style={styles.button}>
-                        <Text style={styles.textoButton}>Crear cuenta con Email</Text>
-                    </Pressable>
-                    <Pressable style={styles.buttonGoogle}>
-                        <Text style={styles.textoButtonGoogle}>Crear cuenta con Google</Text>
+             <View style={{ gap: 15 }}>
+                    
+                    <ButtonPrincipal 
+                        onPress={() => router.push('/CrearCuenta')}
+                        titulo='Crear cuenta con Email'
+                        tituloDos='Continuar con Google'
+                        onPressDos={() => {}}
+                    />
+                    
+                </View>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, marginTop: 20 }}>
+                    <Text>¿Ya tenés cuenta?</Text>
+                    <Pressable>
+                        <Text style={{fontSize: 16, fontWeight: 'bold' }}>Iniciá sesión</Text>
                     </Pressable>
                 </View>
             </View>
@@ -57,33 +70,9 @@ const styles = StyleSheet.create({
     titulo: {
         color: 'black',
         fontSize: 40,
-        fontWeight: 'bold',
+        fontFamily: 'ChillaxBold',
         textAlign: 'center',
     },
-    button: {
-        backgroundColor: 'black',
-        borderRadius: 50,
-        width: '100%',
-    },
-    buttonGoogle: {
-        backgroundColor: 'white',
-        borderRadius: 50,
-        width: '100%',
-        borderWidth: 1,
-        borderColor: 'black',
-    },
-    textoButton: {
-        color: 'white',
-        fontSize: 16,
-        textAlign: 'center',
-        padding: 10,
-    },
-    textoButtonGoogle: {
-        color: 'black',
-        fontSize: 16,
-        textAlign: 'center',
-        padding: 10,
-    }
 });
 
 export default Welcome;
