@@ -1,10 +1,11 @@
 import ButtonPrincipal from '@/components/ButtonPrincipal/ButtonPrincipal';
 import { Ionicons } from '@expo/vector-icons';
 import Checkbox from 'expo-checkbox';
-import { router } from 'expo-router';
+import * as LocalAuthentication from 'expo-local-authentication';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Keyboard,
+    Alert, Keyboard,
     KeyboardAvoidingView,
     Platform,
     Pressable,
@@ -18,6 +19,30 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Login = () => {
+    //Para face ID
+    const handleFaceIDLogin = async () => {
+        const compatible = await LocalAuthentication.hasHardwareAsync();
+        const enrolled = await LocalAuthentication.isEnrolledAsync();
+
+        if (!compatible || !enrolled) {
+            Alert.alert('Error', 'La autenticación biométrica no está disponible en este dispositivo.');
+            return;
+        }
+
+        const result = await LocalAuthentication.authenticateAsync({
+            promptMessage: 'Usar Face ID para ingresar',
+            fallbackLabel: 'Ingresar con contraseña',
+        });
+
+        if (result.success) {
+            Alert.alert('Éxito', 'Autenticación biométrica exitosa');
+            // Navegar a otra pantalla o simular login
+            // router.push('/home'); // ejemplo
+        } else {
+            Alert.alert('Error', 'Autenticación cancelada o fallida.');
+        }
+    };
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isChecked, setChecked] = useState(false);
@@ -27,8 +52,10 @@ const Login = () => {
         console.log('Password:', password);
     };
 
+    const router = useRouter();
+
     return (
-        <SafeAreaView style={styles.safeArea}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', padding: 16 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                 <KeyboardAvoidingView
                     style={{ flex: 1 }}
@@ -69,7 +96,7 @@ const Login = () => {
                                         />
                                         <Text style={styles.checkboxText}>Recordarme</Text>
                                     </View>
-                                    <Pressable>
+                                    <Pressable onPress={() => router.push('/ForgotPassword')}>
                                         <Text style={styles.linkText}>¿Olvidaste la contraseña?</Text>
                                     </Pressable>
                                 </View>
@@ -84,7 +111,7 @@ const Login = () => {
                             <Text style={styles.separator}>- o -</Text>
                             <View style={{ gap: 15 }}>
                                 <ButtonPrincipal
-                                    onPressDos={() => { }}
+                                    onPressDos={handleFaceIDLogin}
                                     tituloDos="Ingresar con Face ID"
                                 />
                                 <ButtonPrincipal
@@ -109,11 +136,7 @@ const Login = () => {
 };
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-        backgroundColor: 'white',
-        padding: 16,
-    },
+
     scrollContent: {
         height: 'auto',
         gap: 15,

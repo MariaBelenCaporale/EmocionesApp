@@ -60,6 +60,31 @@ export default function RootLayout() {
             ),
           })}
         />
+        <Stack.Screen
+          name="ForgotPassword"
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: 'Recuperar contraseña',
+            headerStyle: {
+              backgroundColor: 'white',
+            },
+            headerTitleStyle: {
+              fontFamily: 'ChillaxSemibold',
+              fontSize: 16,
+              color: '#000',
+            },
+            headerTintColor: '#000',
+            headerLeft: () => (
+              <Pressable onPress={() => navigation.goBack()}>
+                <Ionicons
+                  name="chevron-back-outline"
+                  size={24}
+                  color="black"
+                />
+              </Pressable>
+            ),
+          })}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="dark" />
