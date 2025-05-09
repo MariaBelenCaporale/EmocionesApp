@@ -15,7 +15,7 @@ const Header = ({ titulo, subtitulo }) => {
 const styles = StyleSheet.create({
     container: {
         width: '100%', 
-        backgroundColor:'white', 
+        backgroundColor:'white',
         paddingHorizontal: 24, 
         gap: 16, 
         justifyContent: 'center', 

@@ -5,7 +5,10 @@ interface ButtonPrincipalProps {
   onPress: () => void;
   tituloDos?: string;
   onPressDos?: () => void;
-  iconoDos?: React.ReactNode; 
+  iconoDos?: React.ReactNode;
+  tituloTres?: string;
+  preguntaTres?: string;
+  onPressTres?: () => void;
 }
 
 const ButtonPrincipal = ({
@@ -14,23 +17,40 @@ const ButtonPrincipal = ({
   tituloDos,
   onPressDos,
   iconoDos,
+  tituloTres,
+  preguntaTres,
+  onPressTres,
 }: ButtonPrincipalProps) => {
   return (
-    <View style={{ gap: 15 }}>
+    <View style={{ width: '100%', gap: 15, height: 200, paddingVertical: 40, paddingHorizontal: 16, backgroundColor: 'transparent', position: 'absolute', bottom: 0, justifyContent: 'center' }}>
+
       {titulo && onPress && (
-      <Pressable style={styles.button} onPress={onPress}>
-        <Text style={styles.textoButton}>{titulo}</Text>
-      </Pressable>
+        <Pressable style={styles.button} onPress={onPress}>
+          <Text style={styles.textoButton}>{titulo}</Text>
+        </Pressable>
       )}
 
       {tituloDos && onPressDos && (
         <Pressable style={styles.buttonGoogle} onPress={onPressDos}>
           <View style={styles.iconTextContainer}>
-          {iconoDos}
+            {iconoDos}
             <Text style={styles.textoButtonGoogle}>{tituloDos}</Text>
           </View>
         </Pressable>
       )}
+      
+      {/* Pregunta */}
+      {tituloTres && onPressTres && (
+       
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, marginBottom: 10}}>
+            <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14 }}>{preguntaTres}</Text>
+            <Pressable onPress={onPressTres}>
+            <Text style={{fontSize: 14, fontFamily: 'SatoshiBold'}}>{tituloTres}</Text>
+            </Pressable>
+          </View>
+       
+      )}
+     
     </View>
   );
 };
@@ -52,7 +72,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SatoshiMedium',
   },
   buttonGoogle: {
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     borderRadius: 50,
     width: '100%',
     borderWidth: 1,

@@ -1,145 +1,105 @@
-import ButtonPrincipal from '@/components/ButtonPrincipal/ButtonPrincipal';
-import { Ionicons } from '@expo/vector-icons';
-import Checkbox from 'expo-checkbox';
-import * as LocalAuthentication from 'expo-local-authentication';
-import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import {
-    Alert, Keyboard,
-    KeyboardAvoidingView,
-    Platform,
-    Pressable,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableWithoutFeedback,
-    View
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import ButtonPrincipal from "@/components/ButtonPrincipal/ButtonPrincipal";
+import { Ionicons } from "@expo/vector-icons";
+import Checkbox from "expo-checkbox";
+import { useRouter } from "expo-router";
+import React from "react";
+import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 
 const Login = () => {
-    //Para face ID
-    const handleFaceIDLogin = async () => {
-        const compatible = await LocalAuthentication.hasHardwareAsync();
-        const enrolled = await LocalAuthentication.isEnrolledAsync();
-
-        if (!compatible || !enrolled) {
-            Alert.alert('Error', 'La autenticación biométrica no está disponible en este dispositivo.');
-            return;
-        }
-
-        const result = await LocalAuthentication.authenticateAsync({
-            promptMessage: 'Usar Face ID para ingresar',
-            fallbackLabel: 'Ingresar con contraseña',
-        });
-
-        if (result.success) {
-            Alert.alert('Éxito', 'Autenticación biométrica exitosa');
-            // Navegar a otra pantalla o simular login
-            // router.push('/home'); // ejemplo
-        } else {
-            Alert.alert('Error', 'Autenticación cancelada o fallida.');
-        }
-    };
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [isChecked, setChecked] = useState(false);
-
-    const handleLogin = () => {
-        console.log('Email:', email);
-        console.log('Password:', password);
-    };
-
     const router = useRouter();
+    const [email, setEmail] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const [isChecked, setChecked] = React.useState(false);
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', padding: 16 }}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <KeyboardAvoidingView
-                    style={{ flex: 1 }}
-                    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                >
-                    <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
+            <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+                <View style={styles.container}>
 
-                        <View style={{ paddingVertical: 30, gap: 30 }}>
-                            <View>
-                                <Text style={styles.label}>Email</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="ejemplo@ejemplo.com"
-                                    placeholderTextColor="#888"
-                                    autoCapitalize="none"
-                                    keyboardType="email-address"
-                                    value={email}
-                                    onChangeText={setEmail}
-                                />
-                            </View>
-                            <View>
-                                <Text style={styles.label}>Contraseña</Text>
-                                <TextInput
-                                    style={styles.input}
-                                    placeholder="*********"
-                                    placeholderTextColor="#888"
-                                    secureTextEntry
-                                    value={password}
-                                    onChangeText={setPassword}
-                                />
-                                <View style={styles.rememberMeRow}>
-                                    <View style={styles.checkboxContainer}>
-                                        <Checkbox
-                                            style={styles.checkbox}
-                                            value={isChecked}
-                                            onValueChange={setChecked}
-                                            color={isChecked ? '#000' : undefined}
-                                        />
-                                        <Text style={styles.checkboxText}>Recordarme</Text>
-                                    </View>
-                                    <Pressable onPress={() => router.push('/ForgotPassword')}>
-                                        <Text style={styles.linkText}>¿Olvidaste la contraseña?</Text>
-                                    </Pressable>
-                                </View>
-                            </View>
-                        </View>
-
-                        <View >
-                            <ButtonPrincipal
-                                onPress={handleLogin}
-                                titulo="Iniciar sesión"
+                    <View style={{ width: '100%', paddingHorizontal: 16, paddingVertical: 50, flex: 1, gap: 30 }}>
+                        <View>
+                            <Text style={styles.label}>Email</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="ejemplo@ejemplo.com"
+                                placeholderTextColor="#888"
+                                autoCapitalize="none"
+                                keyboardType="email-address"
+                                value={email}
+                                onChangeText={setEmail}
                             />
-                            <Text style={styles.separator}>- o -</Text>
-                            <View style={{ gap: 15 }}>
-                                <ButtonPrincipal
-                                    onPressDos={handleFaceIDLogin}
-                                    tituloDos="Ingresar con Face ID"
-                                />
-                                <ButtonPrincipal
-                                    onPressDos={() => { }}
-                                    tituloDos="Iniciar sesión con Google"
-                                    iconoDos={<Ionicons name="logo-google" size={24} color="black" />}
-                                />
-                            </View>
-                            <View style={styles.signupRow}>
-                                <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14 }}>¿Aún no tenés cuenta?</Text>
-                                <Pressable onPress={() => router.push('/welcome')}>
-                                    <Text style={{ fontFamily: 'SatoshiBold', fontSize: 14 }}>Crear cuenta</Text>
-                                </Pressable>
-                            </View>
+                        </View>
+                        <View>
+                            <Text style={styles.label}>Contraseña</Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="********"
+                                placeholderTextColor="#888"
+                                secureTextEntry
+                                value={password}
+                                onChangeText={setPassword}
+                            />
                         </View>
 
-                    </ScrollView>
-                </KeyboardAvoidingView>
-            </TouchableWithoutFeedback>
-        </SafeAreaView>
-    );
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                                <Checkbox style={styles.checkbox} color={'black'} value={isChecked} onValueChange={setChecked} />
+                                <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 14 }}>Recordarme</Text>
+                            </View>
+                            <Pressable onPress={() => router.push('/ForgotPassword')}>
+                                <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 14 }}>¿Olvidaste la contraseña?</Text>
+                            </Pressable>
+                        </View>
+
+                    </View>
+
+                    <ButtonPrincipal
+                        onPress={() => router.push('/CrearCuenta')}
+                        titulo='Iniciar sesión'
+
+                        tituloDos='Continuar con Google'
+                        onPressDos={() => { }}
+                        iconoDos={<Ionicons name="logo-google" size={24} color="black" />}
+
+                        preguntaTres="¿Aún no tenés tu cuenta?"
+                        tituloTres="Crear cuenta"
+                        onPressTres={() => router.push('/welcome')}
+                    />
+
+                </View>
+            </ScrollView>
+
+        </SafeAreaProvider>
+    )
 };
 
 const styles = StyleSheet.create({
-
-    scrollContent: {
-        height: 'auto',
-        gap: 15,
+    container: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    checkbox: {
+        borderRadius: 4,
+        borderColor: 'black',
+        borderWidth: 1,
+        width: 15,
+        height: 15,
+    },
+    containerTitulo: {
+        width: '100%',
+        backgroundColor: '#F7F7F7',
+        borderBottomRightRadius: 24,
+        borderBottomLeftRadius: 24,
+        alignItems: 'center',
+        flex: 1,
+    },
+    titulo: {
+        fontSize: 24,
+        fontFamily: 'SatoshiBold',
+        textAlign: 'center',
     },
     input: {
         height: 48,
@@ -157,42 +117,10 @@ const styles = StyleSheet.create({
         color: 'black',
         paddingBottom: 10,
     },
-    rememberMeRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
-    },
-    checkboxContainer: {
-        flexDirection: 'row',
-        gap: 5,
-        alignItems: 'center',
-    },
-    checkbox: {
-        borderRadius: 4,
-        backgroundColor: '#D9D9D9',
-        borderColor: '#D9D9D9',
-    },
-    checkboxText: {
-        fontFamily: 'SatoshiMedium',
-        fontSize: 12,
-    },
-    linkText: {
-        fontFamily: 'SatoshiMedium',
-        fontSize: 12,
-    },
-    separator: {
-        textAlign: 'center',
-        marginVertical: 16,
-        fontFamily: 'SatoshiRegular',
-    },
-    signupRow: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        gap: 5,
-        marginTop: 20,
-    },
-
+    scrollContent: {
+        height: '100%',
+    }
 });
+
 
 export default Login;
