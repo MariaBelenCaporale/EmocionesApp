@@ -1,6 +1,8 @@
+import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import Characters from '../../assets/images/welcome.png';
 import ButtonPrincipal from "../../components/ButtonPrincipal/ButtonPrincipal";
 
@@ -9,6 +11,7 @@ const Welcome = () => {
     const router = useRouter();
 
     return (
+        <SafeAreaProvider style={{ flex: 1 }}>
         <View style={styles.container}>
             <View style={styles.containerTitulo}>
                 <View style={{ width: '100%', height: 'auto', alignItems: 'center', justifyContent: 'center' }}>
@@ -28,17 +31,19 @@ const Welcome = () => {
                         titulo='Crear cuenta con Email'
                         tituloDos='Continuar con Google'
                         onPressDos={() => {}}
-                    />
+                        iconoDos={<Ionicons name="logo-google" size={24} color="black" />}
+                    />  
                     
                 </View>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, marginTop: 20 }}>
-                    <Text>¿Ya tenés cuenta?</Text>
-                    <Pressable>
-                        <Text style={{fontSize: 16, fontWeight: 'bold' }}>Iniciá sesión</Text>
+                    <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14 }}>¿Ya tenés cuenta?</Text>
+                    <Pressable onPress={() => router.push('/Login')}>
+                        <Text style={{fontSize: 14, fontFamily: 'SatoshiBold'  }}>Iniciá sesión</Text>
                     </Pressable>
                 </View>
             </View>
         </View>
+        </SafeAreaProvider>
     )
 };
 
