@@ -35,6 +35,7 @@ export default function RootLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="welcome" options={{ headerShown: false }} />
         <Stack.Screen name="CrearCuenta" options={{ headerShown: false }} />
+        <Stack.Screen name="Bienvenida" options={{ headerShown: false }} />
         <Stack.Screen
           name="Login"
           options={({ navigation }) => ({

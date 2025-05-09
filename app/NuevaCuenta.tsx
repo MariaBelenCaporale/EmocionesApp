@@ -11,24 +11,72 @@ const NuevaCuenta = () => {
     const [password, setPassword] = React.useState('');
     const [repeatPassword, setRepeatPassword] = React.useState('');
 
-    const isFormValid = () => {
+    const [emailTouched, setEmailTouched] = React.useState(false);
+    const [passwordTouched, setPasswordTouched] = React.useState(false);
+    const [repeatPasswordTouched, setRepeatPasswordTouched] = React.useState(false);
+
+    const [emailError, setEmailError] = React.useState('');
+    const [passwordError, setPasswordError] = React.useState('');
+    const [repeatPasswordError, setRepeatPasswordError] = React.useState('');
+
+    const isValidEmail = (email: string) => {
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return regex.test(email);
+      };
+
+    const validateEmail = () => {
+        if (email.trim() === '') {
+            setEmailError('El email es obligatorio');
+        } else if (!isValidEmail(email)) {
+            setEmailError('El email no es válido');
+        } else {
+            setEmailError('');
+        }
+    };
+
+    const validatePassword = () => {
         const hasUppercase = /[A-Z]/.test(password);
         const hasNumber = /\d/.test(password);
         const hasSpecialChar = /[^A-Za-z0-9]/.test(password);
         const isLongEnough = password.length >= 8;
-        const passwordsMatch = password === repeatPassword;
-        const isEmailValid = email.trim().length > 0;
-      
-        return (
-          isEmailValid &&
-          hasUppercase &&
-          hasNumber &&
-          hasSpecialChar &&
-          isLongEnough &&
-          passwordsMatch
-        );
-      };
 
+        if (password === '') {
+            setPasswordError('La contraseña es obligatoria');
+        } else if (!hasUppercase || !hasNumber || !hasSpecialChar || !isLongEnough) {
+            setPasswordError('La contraseña no cumple con los requisitos');
+        } else {
+            setPasswordError('');
+        }
+    };
+
+
+    const validateRepeatPassword = () => {
+        if (repeatPassword === '') {
+            setRepeatPasswordError('Repetir la contraseña es obligatorio');
+        } else if (password !== repeatPassword) {
+            setRepeatPasswordError('Las contraseñas no coinciden');
+        } else {
+            setRepeatPasswordError('');
+        }
+    };
+
+
+      
+
+
+        React.useEffect(() => {
+            if (emailTouched) validateEmail();
+            if (passwordTouched) validatePassword();
+            if (repeatPasswordTouched) validateRepeatPassword();
+            },  [email, password, repeatPassword, emailTouched, passwordTouched, repeatPasswordTouched]);
+
+            const isFormValid = () => {
+                return !emailError && !passwordError && !repeatPasswordError;
+            };
+
+
+
+      
 
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -48,7 +96,11 @@ const NuevaCuenta = () => {
                                     keyboardType="email-address"
                                     value={email}
                                     onChangeText={setEmail}
+                                    onBlur={() => { setEmailTouched(true); validateEmail(); }}
                                 />
+                                {emailTouched && emailError !== '' && (
+                                    <Text style={styles.errorText}>{emailError}</Text>
+                                )} 
                             </View>
                             <View>
                                 <Text style={styles.label}>Contraseña</Text>
@@ -59,7 +111,13 @@ const NuevaCuenta = () => {
                                     secureTextEntry
                                     value={password}
                                     onChangeText={setPassword}
+                                    onBlur={() => {setPasswordTouched(true); validatePassword();
+
+                                    }}
                                 />
+                                {passwordTouched && passwordError !== '' && (
+                                    <Text style={styles.errorText}>{passwordError}</Text>
+                                )}
                             </View>
                             <View style={{ gap: 5, paddingVertical: 10, paddingHorizontal: 10, backgroundColor: '#F7F7F7', borderRadius: 8, }}>
                                 <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14, marginBottom: 10}}>Debe contener al menos:</Text>
@@ -77,13 +135,19 @@ const NuevaCuenta = () => {
                                     secureTextEntry
                                     value={repeatPassword}
                                     onChangeText={setRepeatPassword}
+                                    onBlur={() => {setRepeatPasswordTouched(true); validateRepeatPassword();
+
+                                    }}
                                 />
+                                {repeatPasswordTouched && repeatPasswordError !== '' && (
+                                    <Text style={styles.errorText}>{repeatPasswordError}</Text>
+                                )}
                             </View>
                         </View>
                        
 
                         <ButtonPrincipal
-                            onPress={() => router.push('/CrearCuenta')}
+                            onPress={() => router.push('/Bienvenida')}
                             titulo='Continuar'
                             disabled={!isFormValid()}
                         />
@@ -119,7 +183,13 @@ const styles = StyleSheet.create({
     },
     scrollContent: {
         flexGrow: 1,
-    }
+    },
+    errorText: {
+        color: 'red',
+        fontFamily: 'SatoshiRegular',
+        fontSize: 12,
+        marginTop: 5,
+    },
 });
 
 
