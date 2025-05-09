@@ -14,10 +14,12 @@ const Welcome = () => {
         <SafeAreaProvider style={{ flex: 1 }}>
 
             <View style={styles.container}>
-                <View style={styles.containerTitulo}>
+                 <View style={{ width: '100%', paddingHorizontal: 0, paddingVertical: 0, flex: 1, gap: 30 }}>
+                    <View style={styles.containerTitulo}>
                     <Image style={{ width: '70%' }} source={Characters} resizeMode="contain" />
                     <Text style={styles.titulo}>Nombre</Text>
                     <Text style={{ fontSize: 16, textAlign: 'center' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</Text>
+                </View>
                 </View>
 
 

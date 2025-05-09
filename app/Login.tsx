@@ -3,7 +3,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Keyboard, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
@@ -16,6 +16,8 @@ const Login = () => {
 
     return (
         <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
+            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+           
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
 
@@ -72,6 +74,7 @@ const Login = () => {
                 </View>
             </ScrollView>
 
+            </TouchableWithoutFeedback>
         </SafeAreaProvider>
     )
 };
@@ -118,7 +121,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     scrollContent: {
-        height: '100%',
+        flexGrow: 1,
     }
 });
 

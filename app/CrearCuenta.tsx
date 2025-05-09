@@ -11,7 +11,7 @@ const CrearCuenta = () => {
             <HeaderImg />
 
             <View style={styles.container}>
-                <View style={{ flex: 3, width: '100%', paddingHorizontal: 20, paddingVertical: 12, gap: 16 }}>
+                <View style={{  width: '100%', paddingHorizontal: 20, paddingVertical: 12, gap: 16, flex: 1 }}>
                     <Text style={{ color: 'black', fontFamily: 'ChillaxSemibold', fontSize: 20, }}>¡Registrá tus emociones!</Text>
 
                     <Text style={{ color: 'black', fontSize: 16 }}>Tomate un momento para conectar con vos y registrar cómo estás y cómo te sentís a medida que pasan los días.</Text>

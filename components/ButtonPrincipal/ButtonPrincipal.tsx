@@ -22,7 +22,7 @@ const ButtonPrincipal = ({
   onPressTres,
 }: ButtonPrincipalProps) => {
   return (
-    <View style={{ width: '100%', gap: 15, height: 200, paddingVertical: 40, paddingHorizontal: 16, backgroundColor: 'transparent', position: 'absolute', bottom: 0, justifyContent: 'center' }}>
+    <View style={{ width: '100%', gap: 20, height: 230, paddingVertical: 40, paddingHorizontal: 16, backgroundColor: 'transparent', bottom: 0, justifyContent: 'center' }}>
 
       {titulo && onPress && (
         <Pressable style={styles.button} onPress={onPress}>
