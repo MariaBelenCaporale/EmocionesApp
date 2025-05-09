@@ -9,6 +9,8 @@ interface ButtonPrincipalProps {
   tituloTres?: string;
   preguntaTres?: string;
   onPressTres?: () => void;
+  conBorde?: boolean;
+  disabled?:  boolean;
 }
 
 const ButtonPrincipal = ({
@@ -20,18 +22,29 @@ const ButtonPrincipal = ({
   tituloTres,
   preguntaTres,
   onPressTres,
+  conBorde,
+  disabled,
 }: ButtonPrincipalProps) => {
   return (
     <View style={{ width: '100%', gap: 20, height: 230, paddingVertical: 40, paddingHorizontal: 16, backgroundColor: 'transparent', bottom: 0, justifyContent: 'center' }}>
 
       {titulo && onPress && (
-        <Pressable style={styles.button} onPress={onPress}>
+        <Pressable style={[styles.button, disabled && { backgroundColor: '#CECECE' }]} 
+        onPress={onPress}
+          disabled={disabled}
+          >
           <Text style={styles.textoButton}>{titulo}</Text>
         </Pressable>
       )}
 
       {tituloDos && onPressDos && (
-        <Pressable style={styles.buttonGoogle} onPress={onPressDos}>
+        <Pressable 
+          style={[
+            styles.buttonGoogle,
+          !conBorde && { borderWidth: 0 }, 
+        ]} 
+        onPress={onPressDos}
+        >
           <View style={styles.iconTextContainer}>
             {iconoDos}
             <Text style={styles.textoButtonGoogle}>{tituloDos}</Text>

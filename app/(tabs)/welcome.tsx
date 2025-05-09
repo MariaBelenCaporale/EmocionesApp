@@ -35,6 +35,7 @@ const Welcome = () => {
                     preguntaTres="¿Ya tenés cuenta?"
                     tituloTres="Iniciá sesión"
                     onPressTres={() => router.push('/Login')}
+                    conBorde={true}
                 />
 
             </View>

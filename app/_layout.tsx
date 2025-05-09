@@ -85,6 +85,31 @@ export default function RootLayout() {
             ),
           })}
         />
+        <Stack.Screen
+          name="Apodo"
+          options={({ navigation }) => ({
+            headerShown: true,
+            title: 'Crear cuenta',
+            headerStyle: {
+              backgroundColor: 'white',
+            },
+            headerTitleStyle: {
+              fontFamily: 'ChillaxSemibold',
+              fontSize: 16,
+              color: '#000',
+            },
+            headerTintColor: '#000',
+            headerLeft: () => (
+              <Pressable onPress={() => router.push("/welcome")}>
+                <Ionicons
+                  name="chevron-back-outline"
+                  size={24}
+                  color="black"
+                />
+              </Pressable>
+            ),
+          })}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="dark" />
