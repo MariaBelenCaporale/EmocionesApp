@@ -3,11 +3,18 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Keyboard, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useUser } from "./Context/UserContext";
 
 
 const Apodo = () => {
     const router = useRouter();
     const [apodo, setApodo] = React.useState('');
+    const { setApodo: saveApodo } = useUser();
+
+    const handleContinue = () => {
+        saveApodo(apodo);
+        router.push('/NuevaCuenta');
+    };
 
 
     return (
@@ -34,7 +41,7 @@ const Apodo = () => {
                     </View>
 
                     <ButtonPrincipal
-                        onPress={() => router.push('/NuevaCuenta')}
+                        onPress={handleContinue}
                         titulo='Continuar'
                         disabled={apodo.trim().length === 0}
                     />

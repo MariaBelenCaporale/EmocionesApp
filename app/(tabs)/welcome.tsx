@@ -7,10 +7,12 @@ import Characters from '../../assets/images/welcome.png';
 import ButtonPrincipal from "../../components/ButtonPrincipal/ButtonPrincipal";
 
 
+
 const Welcome = () => {
     const router = useRouter();
 
     return (
+
         <SafeAreaProvider style={{ flex: 1 }}>
 
             <View style={styles.container}>
@@ -41,6 +43,7 @@ const Welcome = () => {
             </View>
 
         </SafeAreaProvider>
+
     )
 };
 

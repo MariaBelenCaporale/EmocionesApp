@@ -5,6 +5,7 @@ import { StatusBar } from 'expo-status-bar';
 import { Pressable } from 'react-native';
 import 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { UserProvider } from './Context/UserContext';
 
 
 
@@ -30,6 +31,7 @@ export default function RootLayout() {
   }
 
   return (
+            <UserProvider>
     <SafeAreaView style={{ flex: 1 }}>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
@@ -111,9 +113,26 @@ export default function RootLayout() {
             ),
           })}
         />
+        <Stack.Screen
+          name="NuevoEstado"
+          options={() => ({
+            headerShown: true,
+            title: 'Nuevo estado',
+            headerStyle: {
+              backgroundColor: 'white',
+            },
+            headerTitleStyle: {
+              fontFamily: 'ChillaxSemibold',
+              fontSize: 16,
+              color: '#000',
+            },
+            headerTintColor: '#000',
+          })}
+        />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="dark" />
     </SafeAreaView>
+    </UserProvider>
   );
 }
