@@ -59,7 +59,7 @@ const Login = () => {
                     </View>
 
                     <ButtonPrincipal
-                        onPress={() => router.push('/CrearCuenta')}
+                        onPress={() => router.push('/Home')}
                         titulo='Iniciar sesión'
 
                         tituloDos='Continuar con Google'

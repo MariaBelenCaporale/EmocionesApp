@@ -1,4 +1,6 @@
 
+import Header from '@/components/Header/Header';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import ButtonPrincipal from '../components/ButtonPrincipal/ButtonPrincipal';
@@ -16,44 +18,47 @@ const emociones = [
 ];
 
 const NuevoEstado = () => {
+    const router = useRouter();
     const { apodo, descripcionEmocion, setDescripcionEmocion } = useUser();
+
+
     return (
         <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, backgroundColor: 'white' }}>
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-                
-                <Text style={{ fontSize: 24, fontFamily: 'ChillaxSemibold', marginBottom: 20, textAlign: 'center' }}>
-                    ¡Es momento de registrar tu emoción!
-                </Text>
-                
 
-                <View style={{ paddingVertical: 20, }}>
-                    <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>¿Cómo te sentís hoy?</Text>
-                </View>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, }}>
-                    {emociones.map((emocion, i) => (
-                        <Chip key={i} emocion={emocion} />
-                    ))}
-                </View>
-
-                <View style={{ paddingVertical: 20, marginTop: 20, }}>
-                    <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>¿Qué te hizo sentir así {apodo}?</Text>
-                </View>
-                <TextInput
-                    style={styles.input}
-                    placeholder='Escribí lo que quieras...'
-                    multiline
-                    value={descripcionEmocion}
-                    onChangeText={setDescripcionEmocion}
+                <Header
+                    titulo='¡Es momento de registrar tu emoción!'
                 />
-                <Text style={{ fontSize: 12, fontFamily: 'SatoshiRegular', textAlign: 'right', paddingHorizontal: 5, paddingVertical: 5, }}>Opcional</Text>
 
+                <View style={{ gap: 30 }}>
+                    <View style={{ gap: 20, }}>
+                        <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>¿Cómo te sentís hoy?</Text>
+                        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, }}>
+                            {emociones.map((emocion, i) => (
+                                <Chip key={i} emocion={emocion} />
+                            ))}
+                        </View>
+                    </View>
 
+                    <View style={{ gap: 20, }}>
+                        <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>¿Qué te hizo sentir así {apodo}?</Text>
+                        <View>
+                            <TextInput
+                                style={styles.input}
+                                placeholder='Escribí lo que quieras...'
+                                multiline
+                                value={descripcionEmocion}
+                                onChangeText={setDescripcionEmocion}
+                            />
+                            <Text style={{ fontSize: 12, fontFamily: 'SatoshiRegular', textAlign: 'right', paddingHorizontal: 5, paddingVertical: 5, }}>Opcional</Text>
+                        </View>
+                    </View>
 
                 <ButtonPrincipal
                     titulo='Finalizar'
-                    onPress={() => { }}
+                    onPress={() => router.push('/(tabs)/Home')}
                 />
-                
+                </View>
             </ScrollView>
         </SafeAreaView>
     );

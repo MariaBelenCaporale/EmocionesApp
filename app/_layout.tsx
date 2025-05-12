@@ -24,6 +24,7 @@ export default function RootLayout() {
     'SatoshiBlack': require('../assets/fonts/Satoshi/Satoshi-Black.otf'),
     'SatoshiLight': require('../assets/fonts/Satoshi/Satoshi-Light.otf'),
     'SatoshiItalic': require('../assets/fonts/Satoshi/Satoshi-Italic.otf'),
+    'SatoshiMediumItalic': require('../assets/fonts/Satoshi/Satoshi-MediumItalic.otf'),
   });
 
   if (!loaded || error) {
@@ -116,8 +117,10 @@ export default function RootLayout() {
         <Stack.Screen
           name="NuevoEstado"
           options={() => ({
-            headerShown: true,
+            headerShown: false,
             title: 'Nuevo estado',
+            // headerLeft: () => null,
+            // headerBackVisible: false,
             headerStyle: {
               backgroundColor: 'white',
             },

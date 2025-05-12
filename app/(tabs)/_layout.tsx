@@ -36,6 +36,13 @@ const TabsLayout = () => {
             
           }}
         />
+        <Tabs.Screen
+          name="Home"
+          options={{
+            tabBarStyle: { display: 'none' }
+            
+          }}
+        />
       </Tabs>
 
   </View>
