@@ -1,22 +1,24 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 
-const CardItems = ({ titulo, subtitulo, icono }) => {
+const CardItems = ({ titulo, subtitulo, icono, onPress }) => {
     return (
-        <View style={styles.cardItems}>
-            <Ionicons name={icono} size={24} color="black" />
-            <View>
-            <Text style={{ fontFamily: 'ChillaxSemibold', fontSize: 18 }}>{titulo}</Text>
-            <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14 }}>{subtitulo}</Text>
+        <Pressable onPress={onPress} style={styles.cardItems}>
+            <View style={{ backgroundColor: '#FEEBEB', width: 30, height: 30, borderRadius: 50, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name={icono} size={20} color="black" />
             </View>
-        </View>
+            <View>
+                <Text style={{ fontFamily: 'ChillaxSemibold', fontSize: 18 }}>{titulo}</Text>
+                <Text style={{ fontFamily: 'SatoshiRegular', fontSize: 14 }}>{subtitulo}</Text>
+            </View>
+        </Pressable>
     )
-};
+}; 
 
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
     cardItems: {
         backgroundColor: 'white',
         width: '100%',
@@ -29,7 +31,7 @@ const styles = StyleSheet.create ({
 
         //IOS
         shadowColor: 'black',
-        shadowOffset: { width:0, height: 2},
+        shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
         shadowRadius: 4,
 

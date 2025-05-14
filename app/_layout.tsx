@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
-import { Stack, useRouter } from 'expo-router';
+import { Stack, useNavigation, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -11,6 +11,7 @@ import { UserProvider } from './Context/UserContext';
 
 const RootLayout = () => {
   const router = useRouter();
+  const navigation = useNavigation();
 
   const [loaded, error] = useFonts({
     'ChillaxRegular': require('../assets/fonts/Chillax/Chillax-Regular.otf'),
@@ -124,7 +125,7 @@ const RootLayout = () => {
               <Stack.Screen
                 name="NuevoEstado"
                 options={() => ({
-                  headerShown: false,
+                  headerShown: true,
                   title: 'Nuevo estado',
                   headerStyle: {
                     backgroundColor: 'white',
@@ -135,6 +136,7 @@ const RootLayout = () => {
                     color: '#000',
                   },
                   headerTintColor: '#000',
+                  navigationBarHidden: true,
                 })}
               />
               <Stack.Screen
@@ -149,15 +151,7 @@ const RootLayout = () => {
                   },
                   navigationBarHidden: true,
                   headerTintColor: '#000',
-                  headerLeft: () => (
-                    <Pressable onPress={() => router.push('/Home')}>
-                      <Ionicons
-                        name="chevron-back-outline"
-                        size={24}
-                        color="black"
-                      />
-                    </Pressable>
-                  ),
+                  
                   headerRight: () => (
                     <Ionicons
                     name="diamond-outline" 
@@ -167,12 +161,33 @@ const RootLayout = () => {
                   )
                 })}
               />
+              <Stack.Screen
+                name="Personajes"
+                options={() => ({
+                  headerShown: true,
+                  title: 'Personajes',
+                  
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  navigationBarHidden: true,
+                  headerTintColor: '#000',
+                  headerRight: () => (
+                    <Ionicons
+                    name="gift-outline" 
+                    size={24}
+                    color="black"
+                  />
+                  )
+                })}
+              />
           
             </Stack>
-
-            <StatusBar style="dark" />
-
           </SafeAreaView>
+
+          <StatusBar backgroundColor='transparent' style="black" />
         </UserProvider>
 
   );

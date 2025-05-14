@@ -8,7 +8,7 @@ import { Image, StyleSheet, View } from "react-native";
 const CardImg = ({ imagen }) => {
     return (
         <View style={styles.cardImg}>
-            <Image source={imagen} style={{  resizeMode: 'cover', width: '100%', }} />
+            <Image source={imagen} style={{  resizeMode: 'contain', width: '100%',  }} />
         </View>
     )
 };
@@ -19,7 +19,9 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 12,
         overflow: 'hidden',
-        height: 'auto',
+        alignItems: 'center',          
+        justifyContent: 'center',
+        flex: 1,
 
         //IOS
         shadowColor: 'black',

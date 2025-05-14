@@ -1,9 +1,10 @@
-import { useUser } from "@/app/Context/UserContext";
+import { useUser } from '@/app/Context/UserContext';
 import coloresEmociones from '@/constants/coloresEmociones';
 import { Pressable, StyleSheet, Text } from "react-native";
 
 const Chip = ({ emocion, fixed = false }) => {
-  const { emocionSeleccionada, setEmocionSeleccionada } = useUser();
+  const { emocionSeleccionada, setEmocionSeleccionada } = useUser(); 
+
   const isSelected = emocionSeleccionada === emocion;
   const baseColor = coloresEmociones[emocion] || '#f7f7f7';
   const backgroundColor = isSelected && !fixed ? '#CECECE' : baseColor;
