@@ -2,7 +2,7 @@
 import Header from '@/components/Header/Header';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import ButtonPrincipal from '../components/ButtonPrincipal/ButtonPrincipal';
 import Chip from '../components/Chip/Chip';
 import { useUser } from './Context/UserContext';
@@ -23,7 +23,7 @@ const NuevoEstado = () => {
 
 
     return (
-        <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, backgroundColor: 'white' }}>
+
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
                 <Header
@@ -60,7 +60,7 @@ const NuevoEstado = () => {
                 />
                 </View>
             </ScrollView>
-        </SafeAreaView>
+
     );
 };
 

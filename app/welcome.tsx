@@ -2,9 +2,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import Characters from '../../assets/images/welcome.png';
-import ButtonPrincipal from "../../components/ButtonPrincipal/ButtonPrincipal";
+import Characters from '../assets/images/welcome.png';
+import ButtonPrincipal from "../components/ButtonPrincipal/ButtonPrincipal";
 
 
 
@@ -13,7 +12,7 @@ const Welcome = () => {
 
     return (
 
-        <SafeAreaProvider style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>
 
             <View style={styles.container}>
                  <View style={{ width: '100%', paddingHorizontal: 0, paddingVertical: 0, flex: 1, gap: 30 }}>
@@ -42,7 +41,7 @@ const Welcome = () => {
 
             </View>
 
-        </SafeAreaProvider>
+        </View>
 
     )
 };

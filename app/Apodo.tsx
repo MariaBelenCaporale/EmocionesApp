@@ -2,7 +2,6 @@ import ButtonPrincipal from "@/components/ButtonPrincipal/ButtonPrincipal";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Keyboard, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { useUser } from "./Context/UserContext";
 
 
@@ -18,7 +17,7 @@ const Apodo = () => {
 
 
     return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
+
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
            
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -50,7 +49,7 @@ const Apodo = () => {
             </ScrollView>
 
             </TouchableWithoutFeedback>
-        </SafeAreaProvider>
+
     )
 };
 

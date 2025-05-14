@@ -3,15 +3,14 @@ import { useFonts } from 'expo-font';
 import { Stack, useRouter } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { Pressable } from 'react-native';
-import 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { UserProvider } from './Context/UserContext';
 
 
 
 
-export default function RootLayout() {
-      const router = useRouter();
+const RootLayout = () => {
+  const router = useRouter();
 
   const [loaded, error] = useFonts({
     'ChillaxRegular': require('../assets/fonts/Chillax/Chillax-Regular.otf'),
@@ -32,110 +31,151 @@ export default function RootLayout() {
   }
 
   return (
-            <UserProvider>
-    <SafeAreaView style={{ flex: 1 }}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="welcome" options={{ headerShown: false }} />
-        <Stack.Screen name="CrearCuenta" options={{ headerShown: false }} />
-        <Stack.Screen name="Bienvenida" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="Login"
-          options={({ navigation }) => ({
-            headerShown: true,
-            title: 'Iniciar sesión',
-            headerStyle: {
-              backgroundColor: 'white',
-            },
-            headerTitleStyle: {
-              fontFamily: 'ChillaxSemibold',
-              fontSize: 16,
-              color: '#000',
-            },
-            headerTintColor: '#000',
-            headerLeft: () => (
-              <Pressable onPress={() => navigation.goBack()}>
-                <Ionicons
-                  name="chevron-back-outline"
-                  size={24}
-                  color="black"
-                />
-              </Pressable>
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          options={({ navigation }) => ({
-            headerShown: true,
-            title: 'Recuperar contraseña',
-            headerStyle: {
-              backgroundColor: 'white',
-            },
-            headerTitleStyle: {
-              fontFamily: 'ChillaxSemibold',
-              fontSize: 16,
-              color: '#000',
-            },
-            headerTintColor: '#000',
-            headerLeft: () => (
-              <Pressable onPress={() => navigation.goBack()}>
-                <Ionicons
-                  name="chevron-back-outline"
-                  size={24}
-                  color="black"
-                />
-              </Pressable>
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="Apodo"
-          options={({ navigation }) => ({
-            headerShown: true,
-            title: 'Crear cuenta',
-            headerStyle: {
-              backgroundColor: 'white',
-            },
-            headerTitleStyle: {
-              fontFamily: 'ChillaxSemibold',
-              fontSize: 16,
-              color: '#000',
-            },
-            headerTintColor: '#000',
-            headerLeft: () => (
-              <Pressable onPress={() => router.push("/welcome")}>
-                <Ionicons
-                  name="chevron-back-outline"
-                  size={24}
-                  color="black"
-                />
-              </Pressable>
-            ),
-          })}
-        />
-        <Stack.Screen
-          name="NuevoEstado"
-          options={() => ({
-            headerShown: false,
-            title: 'Nuevo estado',
-            // headerLeft: () => null,
-            // headerBackVisible: false,
-            headerStyle: {
-              backgroundColor: 'white',
-            },
-            headerTitleStyle: {
-              fontFamily: 'ChillaxSemibold',
-              fontSize: 16,
-              color: '#000',
-            },
-            headerTintColor: '#000',
-          })}
-        />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="dark" />
-    </SafeAreaView>
-    </UserProvider>
+       <UserProvider>
+          <SafeAreaView style={{ flex: 1 }}>
+
+            <Stack
+              screenOptions={{
+                contentStyle: {
+                  backgroundColor: 'white',
+                  flex: 1,
+                }
+              }}>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false, navigationBarHidden: true, }} />
+              <Stack.Screen name="welcome" options={{ headerShown: false }} />
+              <Stack.Screen name="CrearCuenta" options={{ headerShown: false }} />
+              <Stack.Screen name="Bienvenida" options={{ headerShown: false }} />
+              <Stack.Screen
+                name="Login"
+                options={({ navigation }) => ({
+                  
+                  headerShown: true,
+                  title: 'Iniciar sesión',
+                  headerStyle: {
+                    backgroundColor: 'white',
+                  },
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  headerTintColor: '#000',
+                  headerLeft: () => (
+                    <Pressable onPress={() => navigation.goBack()}>
+                      <Ionicons
+                        name="chevron-back-outline"
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="ForgotPassword"
+                options={({ navigation }) => ({
+                  headerShown: true,
+                  title: 'Recuperar contraseña',
+                  headerStyle: {
+                    backgroundColor: 'white',
+                  },
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  headerTintColor: '#000',
+                  headerLeft: () => (
+                    <Pressable onPress={() => {''}}>
+                      <Ionicons
+                        name="chevron-back-outline"
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="Apodo"
+                options={({ navigation }) => ({
+                  headerShown: true,
+                  title: 'Crear cuenta',
+                  headerStyle: {
+                    backgroundColor: 'white',
+                  },
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  headerTintColor: '#000',
+                  headerLeft: () => (
+                    <Pressable onPress={() => router.push("/welcome")}>
+                      <Ionicons
+                        name="chevron-back-outline"
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  ),
+                })}
+              />
+              <Stack.Screen
+                name="NuevoEstado"
+                options={() => ({
+                  headerShown: false,
+                  title: 'Nuevo estado',
+                  headerStyle: {
+                    backgroundColor: 'white',
+                  },
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  headerTintColor: '#000',
+                })}
+              />
+              <Stack.Screen
+                name="InfoMonedas"
+                options={() => ({
+                  headerShown: true,
+                  title: 'Info Monedas',
+                  headerTitleStyle: {
+                    fontFamily: 'ChillaxSemibold',
+                    fontSize: 16,
+                    color: '#000',
+                  },
+                  navigationBarHidden: true,
+                  headerTintColor: '#000',
+                  headerLeft: () => (
+                    <Pressable onPress={() => router.push('/Home')}>
+                      <Ionicons
+                        name="chevron-back-outline"
+                        size={24}
+                        color="black"
+                      />
+                    </Pressable>
+                  ),
+                  headerRight: () => (
+                    <Ionicons
+                    name="diamond-outline" 
+                    size={24}
+                    color="black"
+                  />
+                  )
+                })}
+              />
+          
+            </Stack>
+
+            <StatusBar style="dark" />
+
+          </SafeAreaView>
+        </UserProvider>
+
   );
 }
+
+export default RootLayout;

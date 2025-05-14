@@ -16,7 +16,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "androidNavigationBar": {
+        "visible": "immersive",
+
+      }
+    
     },
     "web": {
       "bundler": "metro",
@@ -39,4 +44,6 @@
       "typedRoutes": true
     }
   }
+  
+
 }

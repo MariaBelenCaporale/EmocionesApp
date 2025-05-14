@@ -1,7 +1,7 @@
 import ButtonPrincipal from "@/components/ButtonPrincipal/ButtonPrincipal";
 import Header from "@/components/Header/Header";
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 
 
@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     const [email, setEmail] = useState('');
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white', justifyContent: 'space-around' }}>
+      
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
                 <Header
@@ -36,7 +36,7 @@ const ForgotPassword = () => {
                     />
 
             </ScrollView>
-        </SafeAreaView>
+  
     )
 };
 

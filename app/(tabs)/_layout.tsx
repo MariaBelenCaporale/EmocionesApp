@@ -1,51 +1,103 @@
+import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import React from "react";
-import { View } from "react-native";
+
+
 
 const TabsLayout = () => {
-  return (
-    <View style={{ flex: 1 }}>
 
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarActiveTintColor: "#db314a",
-        tabBarInactiveTintColor: "black",
-        tabBarShowLabel: true,
-        tabBarStyle: {
-          position: "absolute",
-          overflow: "hidden",
-          borderRadius: 50,
-          bottom: 15,
-          height: "auto",
-          marginHorizontal: 16,
-          borderTopColor: "white",
-          borderWidth: 1,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontFamily: "SatoshiBlack",
-          marginVertical: 5,
-        },
-      }}
-    >
-        <Tabs.Screen
-          name="welcome"
-          options={{
-            tabBarStyle: { display: 'none' }
-            
-          }}
-        />
+  
+  return (
+
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: "black",
+          tabBarInactiveTintColor: "black",
+          tabBarShowLabel: false,
+          tabBarStyle: {
+            position: "absolute",
+            overflow: "hidden",
+            borderTopLeftRadius: 50,
+            borderTopRightRadius: 50,
+            bottom: 0,
+            height: 80,
+            marginHorizontal: 0,
+            borderTopColor: "white",
+            borderWidth: 1,
+            backgroundColor: 'white',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+          tabBarLabelStyle: {
+            marginTop: 5,
+            fontSize: 12,
+            fontFamily: "SatoshiRegular",
+          },
+          
+        }}
+      >
+
         <Tabs.Screen
           name="Home"
           options={{
-            tabBarStyle: { display: 'none' }
-            
+            title: "Home",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="home-outline" color={'black'} size={24} />
+            ),
+            headerShown: false,
           }}
         />
-      </Tabs>
+        <Tabs.Screen
+          name="Estadisticas"
+          options={{
+            title: "Estadisticas",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="trending-up-outline" color={'black'} size={24} />
+            ),
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="Entrada"
+          options={{
+            title: "Entrada",
+            tabBarIcon: ({ color, size, backgroundColor }) => (
+              <Ionicons 
+              name="add-outline" 
+              color={'white'} 
+              size={24} 
+              backgroundColor={'black'}  
+              />
+              
+            ),
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="Journal"
+          options={{
+            title: "Journal",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="create-outline" color={'black'} size={24} />
+            ),
+            headerShown: false,
+          }}
+        />
+        <Tabs.Screen
+          name="Perfil"
+          options={{
+            title: "Perfil",
+            tabBarIcon: ({ color, size }) => (
+              <Ionicons name="person-outline" color={'black'} size={24} />
+            ),
+            headerShown: false,
+          }}
+        />
 
-  </View>
+
+      </Tabs>
+  
   );
 }
 

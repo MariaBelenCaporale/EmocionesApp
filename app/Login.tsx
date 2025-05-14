@@ -4,7 +4,6 @@ import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Keyboard, Pressable, ScrollView, StyleSheet, Text, TextInput, TouchableWithoutFeedback, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
 
 const Login = () => {
@@ -15,7 +14,7 @@ const Login = () => {
     const [isChecked, setChecked] = React.useState(false);
 
     return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
+       
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
            
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -76,7 +75,7 @@ const Login = () => {
             </ScrollView>
 
             </TouchableWithoutFeedback>
-        </SafeAreaProvider>
+
     )
 };
 

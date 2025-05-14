@@ -1,16 +1,22 @@
 import ButtonPrincipal from "@/components/ButtonPrincipal/ButtonPrincipal";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import Foto from '../assets/images/bienvenida.png';
 import { useUser } from "./Context/UserContext";
+
+import * as NavigationBar from 'expo-navigation-bar';
+
+useEffect(() => {
+    NavigationBar.setVisibilityAsync("hidden");
+    NavigationBar.setBehaviorAsync("overlay-swipe");
+}, []);
 
 const Bienvenida = () => {
     const router = useRouter();
     const { apodo } = useUser();
     return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#fff' }}>
+   
                 <View style={styles.container}>
 
                     <View style={{ width: '100%', paddingHorizontal: 16, paddingVertical: 50, flex: 1, gap: 30, alignItems: 'center', justifyContent: 'center' }}>
@@ -25,7 +31,7 @@ const Bienvenida = () => {
                     />
 
                 </View>
-        </SafeAreaProvider>
+  
     )
 };
 
