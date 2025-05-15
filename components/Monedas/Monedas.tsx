@@ -6,27 +6,28 @@ import { Pressable, StyleSheet, Text } from "react-native";
 
 
 
-const Monedas = ({ onPress }) => {
+const Monedas = ({ onPress }: { onPress: () => void }) => {
     const router = useRouter();
 
     return (
         <Pressable style={styles.monedas} onPress={onPress}>
-            <Ionicons name="diamond-outline" size={18} color={'black'}></Ionicons>
-            <Text style={{ width: 'auto', fontFamily: 'SatoshiBold', fontSize: 16 }}>30M</Text>
+            <Ionicons name="diamond-outline" size={16} color={'black'}></Ionicons>
+            <Text style={{ width: 'auto', fontFamily: 'SatoshiBold', fontSize: 14 }}>30M</Text>
         </Pressable>
     )
 };
 
 const styles = StyleSheet.create ({
     monedas: {
-        backgroundColor: '#FFEBAD',
-        width: 100,
+        backgroundColor: '#FFF5D6',
+        width: 'auto',
         borderRadius: 50,
+        height: 30,
         alignItems: 'center',
         justifyContent: 'center',
         gap: 10,
-        paddingHorizontal: 8,
-        paddingVertical: 8,
+        paddingHorizontal: 10,
+        paddingVertical: 5,
         flexDirection: 'row',
     },
 })

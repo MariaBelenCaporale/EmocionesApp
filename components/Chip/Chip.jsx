@@ -1,30 +1,31 @@
-import { useUser } from '@/app/Context/UserContext';
-import coloresEmociones from '@/constants/coloresEmociones';
 import { Pressable, StyleSheet, Text } from "react-native";
 
-const Chip = ({ emocion, fixed = false }) => {
-  const { emocionSeleccionada, setEmocionSeleccionada } = useUser(); 
 
-  const isSelected = emocionSeleccionada === emocion;
-  const baseColor = coloresEmociones[emocion] || '#f7f7f7';
-  const backgroundColor = isSelected && !fixed ? '#CECECE' : baseColor;
-
+const Chip = ({ emocion, onPress, activo }: { emocion: string, onPress: () => void, activo: boolean }) => {
   return (
     <Pressable
-      onPress={() => !fixed && setEmocionSeleccionada(emocion)}
-      style={[styles.chip, { backgroundColor }]}
+      onPress={onPress}
+      style={[
+        styles.chip,
+        activo && styles.chipActivo
+      ]}
     >
-      <Text style={styles.text}>{emocion}</Text>
+      <Text style={[styles.chipText, activo && styles.chipTextActivo]}>{emocion}</Text>
     </Pressable>
   );
 };
+
 
 const styles = StyleSheet.create({
   chip: {
     borderRadius: 50,
     paddingHorizontal: 16,
-    paddingVertical: 0,
+    paddingVertical: 10,
+    backgroundColor: '#F7F7F7',
     alignSelf: 'flex-start',
+  },
+  chipActivo: {
+    backgroundColor: '#9D7BD9',
   },
   text: {
     padding: 8,

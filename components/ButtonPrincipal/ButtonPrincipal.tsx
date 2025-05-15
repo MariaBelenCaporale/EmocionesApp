@@ -26,7 +26,7 @@ const ButtonPrincipal = ({
   disabled,
 }: ButtonPrincipalProps) => {
   return (
-    <View style={{ width: '100%', gap: 20, height: 'auto', paddingVertical: 40, paddingHorizontal: 16, backgroundColor: 'transparent', bottom: 0, justifyContent: 'center' }}>
+    <View style={{ width: '100%', gap: 20, height: 'auto', paddingVertical: 40, backgroundColor: 'transparent', bottom: 0, justifyContent: 'center' }}>
 
       {titulo && onPress && (
         <Pressable style={[styles.button, disabled && { backgroundColor: '#CECECE' }]} 

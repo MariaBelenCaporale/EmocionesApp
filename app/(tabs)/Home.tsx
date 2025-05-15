@@ -3,6 +3,7 @@ import CardFrase from "@/components/CardFrase/CardFrase";
 import CardImg from '@/components/CardImg/CardImg';
 import CardItems from "@/components/CardItems/CardItems";
 import Monedas from '@/components/Monedas/Monedas';
+import { useBackHandler } from '@react-native-community/hooks';
 import { useRouter } from 'expo-router';
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -13,6 +14,10 @@ import { useUser } from "../Context/UserContext";
 
 const Home = () => {
 
+  /* para que no puedan volver atras*/
+  useBackHandler(() => {
+    return true; 
+  });
 
   const router = useRouter();
   const emociones = Object.keys(Emociones);
