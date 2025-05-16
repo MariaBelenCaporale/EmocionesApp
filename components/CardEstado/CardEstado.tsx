@@ -8,7 +8,7 @@ import Chip from "../Chip/Chip";
 const CardEstado = () => {
     const { emocionSeleccionada } = useUser();
     const router = useRouter();
-    
+
     const fechaActual = new Date().toLocaleDateString('es-AR', {
         day: '2-digit',
         month: 'long',
@@ -21,6 +21,7 @@ const CardEstado = () => {
             <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>Último estado actualizado</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
                 <Chip emocion={emocionSeleccionada} fixed />
+
                 <Pressable onPress={() => router.push('/NuevoEstado')} style={{ flexDirection: 'row', gap: 2 }}>
                     <Text style={{ fontFamily: 'SatoshiMedium', fontSize: 14 }}>Agregar emocion</Text>
                     <Ionicons name="chevron-forward-outline" size={18} color="black" />

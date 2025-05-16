@@ -16,21 +16,23 @@ const Bienvenida = () => {
     const router = useRouter();
     const { apodo } = useUser();
     return (
-   
-                <View style={styles.container}>
 
-                    <View style={{ width: '100%', paddingHorizontal: 16, paddingVertical: 50, flex: 1, gap: 30, alignItems: 'center', justifyContent: 'center' }}>
-                        <Image source={Foto} />
-                        <Text style={{ color: 'black', fontFamily: 'ChillaxSemibold', fontSize: 30, textAlign: 'center'}}>¡Te damos la bienvenida {apodo}!</Text>
-                    </View>
+        <View style={styles.container}>
 
-                    <ButtonPrincipal
-                        onPress={() => router.push('/NuevoEstado')}
-                        titulo='Continuar'
-                        disabled={false}
-                    />
+            <View style={{ width: '100%', paddingHorizontal: 16, paddingVertical: 50, flex: 1, gap: 30, alignItems: 'center', justifyContent: 'center' }}>
+                <Image source={Foto} />
+                <Text style={{ color: 'black', fontFamily: 'ChillaxSemibold', fontSize: 30, textAlign: 'center' }}>¡Te damos la bienvenida {apodo}!</Text>
+            </View>
+            <View style={{ width: '100%', paddingHorizontal: 16 }}>
+                <ButtonPrincipal
+                    onPress={() => router.push('/NuevoEstado')}
+                    titulo='Continuar'
+                    disabled={false}
+                />
+            </View>
+        </View>
 
-                </View>
+                
   
     )
 };

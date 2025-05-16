@@ -66,7 +66,7 @@ const ModalPersonalizado = ({
 
                     <View>
                         <ButtonPrincipal
-                            titulo="hola" onPress={function (): void {
+                            titulo="Desbloquear personaje" onPress={function (): void {
                                 throw new Error("Function not implemented.");
                             }} />
                     </View>

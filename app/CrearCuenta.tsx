@@ -77,7 +77,7 @@ const CrearCuenta = () => {
             </View>
 
 
-            <View style={{ width: '100%', justifyContent: 'center'}}>
+            <View style={{ width: '100%', justifyContent: 'center', paddingHorizontal: 16}}>
                 <ButtonPrincipal
                     titulo="Crear cuenta"
                     onPress={() => router.push("/Apodo")}

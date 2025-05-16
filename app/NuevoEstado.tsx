@@ -1,28 +1,28 @@
 import HeaderImg from '@/components/Header/HeaderImg';
 import { useRouter } from 'expo-router';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import Libro from '../assets/images/libro.png';
 import ButtonPrincipal from '../components/ButtonPrincipal/ButtonPrincipal';
 import Chip from '../components/Chip/Chip';
-import Emociones from '../constants/Emociones'; // ← Importás las emociones
+import Emociones from '../constants/Emociones';
 import { useUser } from './Context/UserContext';
 
 const NuevoEstado = () => {
     const router = useRouter();
     const { apodo, descripcionEmocion, setDescripcionEmocion } = useUser();
 
-    const emociones = Object.keys(Emociones); // ← Acá las convertís a array
+    const emociones = Object.keys(Emociones);
 
     return (
         <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-            <View style={{ gap: 30 }}>
-                <HeaderImg
-                    imagen={Libro}
-                    titulo='Agregar estado'
-                />
 
-                <View style={{ gap: 30, paddingHorizontal: 16 }}>
+            <HeaderImg
+                imagen={Libro}
+                titulo='Agregar estado'
+            />
+            <SafeAreaView style={{ flex: 1, paddingHorizontal: 16, backgroundColor: 'white' }}>
+                <View style={{ gap: 30 }}>
                     <View style={{ gap: 20 }}>
                         <Text style={{ fontFamily: 'ChillaxMedium', fontSize: 18 }}>¿Cómo te sentís hoy?</Text>
                         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
@@ -51,7 +51,7 @@ const NuevoEstado = () => {
                         onPress={() => router.push('/(tabs)/Home')}
                     />
                 </View>
-            </View>
+            </SafeAreaView>
         </ScrollView>
     );
 };

@@ -18,8 +18,8 @@ const Apodo = () => {
 
     return (
 
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-           
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 <View style={styles.container}>
 
@@ -38,17 +38,17 @@ const Apodo = () => {
                         </View>
 
                     </View>
-
-                    <ButtonPrincipal
-                        onPress={handleContinue}
-                        titulo='Continuar'
-                        disabled={apodo.trim().length === 0}
-                    />
-
+                    <View style={{ width: '100%', paddingHorizontal: 16 }}>
+                        <ButtonPrincipal
+                            onPress={handleContinue}
+                            titulo='Continuar'
+                            disabled={apodo.trim().length === 0}
+                        />
+                    </View>
                 </View>
             </ScrollView>
 
-            </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>
 
     )
 };

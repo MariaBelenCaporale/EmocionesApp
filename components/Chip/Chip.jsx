@@ -25,7 +25,8 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   chipActivo: {
-    backgroundColor: '#9D7BD9',
+    borderWidth: 1,
+    borderColor: 'black',
   },
   text: {
     padding: 8,

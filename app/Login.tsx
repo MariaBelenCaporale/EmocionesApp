@@ -57,6 +57,7 @@ const Login = () => {
 
                     </View>
 
+                    <View style={{ width: '100%', paddingHorizontal: 16 }}>
                     <ButtonPrincipal
                         onPress={() => router.push('/Home')}
                         titulo='Iniciar sesión'
@@ -70,7 +71,7 @@ const Login = () => {
                         onPressTres={() => router.push('/welcome')}
                         conBorde={true}
                     />
-
+                </View>
                 </View>
             </ScrollView>
 
